@@ -21,24 +21,43 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner->{
 			createStudent(studentDAO);
-			List<Student> allStudent=studentDAO.findAll();
-			for (Student student:allStudent){
-				System.out.println(student.toString());
-			}
-			Student firstStudent= studentDAO.findById(1);
+			printAllStudent(studentDAO);
+			List<Student> allStudent;
+			Student firstStudent = getFirstStudent(studentDAO);
 			System.out.println("first student : "+firstStudent.toString());
-			Map<String, Object> searchConditions = new HashMap<>();
-			searchConditions.put("firstName", "Ahmed");
-			searchConditions.put("email", "abdo@gmail.com");
-			allStudent=studentDAO.findAllBy(searchConditions);
+			allStudent = getStudentList(studentDAO);
 			for (Student student:allStudent){
 				System.out.println(student.toString());
 			}
+			firstStudent.setFirstName("emad");
+			studentDAO.update(firstStudent);
+			System.out.println(firstStudent);
 		};
 	}
+
+	private static Student getFirstStudent(StudentDAO studentDAO) {
+		return studentDAO.findById(1);
+	}
+
+	private static List<Student> getStudentList(StudentDAO studentDAO) {
+		List<Student> allStudent;
+		Map<String, Object> searchConditions = new HashMap<>();
+		searchConditions.put("firstName", "Ahmed");
+		searchConditions.put("email", "abdo@gmail.com");
+		allStudent= studentDAO.findAllBy(searchConditions);
+		return allStudent;
+	}
+
+	private static void printAllStudent(StudentDAO studentDAO) {
+		List<Student> allStudent= studentDAO.findAll();
+		for (Student student:allStudent){
+			System.out.println(student.toString());
+		}
+	}
+
 	public static void createStudent(StudentDAO studentDAO){
 		Student student=new Student("ehab ","ashraf","abdo@gmail.com");
 		studentDAO.save(student);
-		System.out.println("created student :"+student.toString());
+		System.out.println("created student :"+ student);
 	}
 }

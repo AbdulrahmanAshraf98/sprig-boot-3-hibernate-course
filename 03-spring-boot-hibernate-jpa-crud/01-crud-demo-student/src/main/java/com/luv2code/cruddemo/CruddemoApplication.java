@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -25,10 +27,17 @@ public class CruddemoApplication {
 			}
 			Student firstStudent= studentDAO.findById(1);
 			System.out.println("first student : "+firstStudent.toString());
+			Map<String, Object> searchConditions = new HashMap<>();
+			searchConditions.put("firstName", "Ahmed");
+			searchConditions.put("email", "abdo@gmail.com");
+			allStudent=studentDAO.findAllBy(searchConditions);
+			for (Student student:allStudent){
+				System.out.println(student.toString());
+			}
 		};
 	}
 	public static void createStudent(StudentDAO studentDAO){
-		Student student=new Student("abdo","ashraf","abdo@gmail.com");
+		Student student=new Student("ehab ","ashraf","abdo@gmail.com");
 		studentDAO.save(student);
 		System.out.println("created student :"+student.toString());
 	}

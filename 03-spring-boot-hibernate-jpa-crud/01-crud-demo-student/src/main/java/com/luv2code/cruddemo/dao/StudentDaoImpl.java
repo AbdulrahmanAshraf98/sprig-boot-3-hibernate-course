@@ -18,7 +18,7 @@ public class StudentDaoImpl implements  StudentDAO{
     }
 
     @Override
-    public Student findById(int id) {
+    public Student findById(Integer id) {
         return this.entityManager.find(Student.class,id);
     }
 

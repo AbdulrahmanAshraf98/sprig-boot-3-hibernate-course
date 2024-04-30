@@ -32,6 +32,7 @@ public class CruddemoApplication {
 			firstStudent.setFirstName("emad");
 			studentDAO.update(firstStudent);
 			System.out.println(firstStudent);
+			studentDAO.delete(2);
 		};
 	}
 

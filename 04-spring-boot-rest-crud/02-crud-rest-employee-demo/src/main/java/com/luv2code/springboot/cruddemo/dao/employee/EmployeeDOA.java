@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface EmployeeDOA {
     List<Employee> findAll();
+    Employee findById(long id );
+    Employee save(Employee employee);
+    void deleteById(long id );
 }

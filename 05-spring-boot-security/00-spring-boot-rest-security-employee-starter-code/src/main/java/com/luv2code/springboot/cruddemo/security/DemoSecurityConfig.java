@@ -15,7 +15,7 @@ public class DemoSecurityConfig {
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(){
         UserDetails abdo= User.builder().username("abdo").password("{noop}123").roles("EMPLOYEE").build();
-        UserDetails mustafa= User.builder().username("mustafa").password("{noop}123").roles("MANAGER").build();
+        UserDetails mustafa= User.builder().username("mustafa").password("{noop}123").roles("EMPLOYEE","MANAGER").build();
         UserDetails islam= User.builder().username("islam").password("{noop}123").roles("ADMIN").build();
         return new  InMemoryUserDetailsManager(abdo,islam,mustafa);
     }

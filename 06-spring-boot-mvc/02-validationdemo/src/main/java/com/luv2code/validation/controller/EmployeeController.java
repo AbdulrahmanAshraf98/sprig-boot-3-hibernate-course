@@ -23,7 +23,7 @@ public class EmployeeController {
 
     @GetMapping("/")
     public  String getAllEmployee(Model uiModel){
-        List<Employee> employees = employeeService.findAll();
+        List<Employee> employees = employeeService.findAllByOrderByIdDesc();
         uiModel.addAttribute("employees", employees);
         return "employee-list";
     }
@@ -49,7 +49,7 @@ public class EmployeeController {
         return "redirect:/";
     }
     @GetMapping("/employees/{id}/delete")
-    public  String deleteEmployee(@PathVariable("id") long id,Model uiModel ){
+    public  String deleteEmployee(@PathVariable("id") long id ){
        employeeService.delete(id);
         return "redirect:/";
     }

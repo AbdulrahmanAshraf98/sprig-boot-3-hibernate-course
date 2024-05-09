@@ -22,6 +22,11 @@ public class EmployeeServiceImpl implements  EmployeeService {
     }
 
     @Override
+    public List<Employee> findAllByOrderByIdDesc() {
+        return this.employeeRepository.findAllByOrderByIdDesc();
+    }
+
+    @Override
     public Employee getById(long id) {
         return this.employeeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid employee ID: " + id));

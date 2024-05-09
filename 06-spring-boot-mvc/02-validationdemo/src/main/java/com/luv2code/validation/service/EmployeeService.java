@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface EmployeeService {
     List<Employee> findAll();
+    List<Employee> findAllByOrderByIdDesc();
     Employee getById(long id);
     Employee create(EmployeeDTO employeeDTO);
     Employee update(long id , EmployeeDTO employeeDTO);
